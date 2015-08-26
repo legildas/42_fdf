@@ -1,38 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsaynac <gsaynac@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/08/26 15:08:20 by gsaynac           #+#    #+#             */
-/*   Updated: 2015/08/26 18:01:01 by gsaynac          ###   ########.fr       */
+/*   Created: 2015/08/26 17:17:24 by gsaynac           #+#    #+#             */
+/*   Updated: 2015/08/26 17:59:14 by gsaynac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include <fdf.h>
 
-# define W					420
-# define H					420
-
-# define KEY_ESCAPE			53
-
-# include <libft.h>
-# include <mlx.h>
-
-typedef struct				s_mlx
+void		ft_error(char *error)
 {
-	void					*mlx;
-	void					*win;
-}							t_mlx;
-
-typedef struct				s_fdf
-{
-	t_mlx					mlx;
-}							t_fdf;
-
-void						ft_mlx_init(t_fdf *fdf);
-void						ft_error(char *error);
-
-#endif
+	ft_putcat(3, "fdf error: ", error, "\n");
+	exit(-1);
+}

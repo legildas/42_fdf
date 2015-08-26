@@ -6,7 +6,7 @@
 /*   By: gsaynac <gsaynac@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/26 15:07:37 by gsaynac           #+#    #+#             */
-/*   Updated: 2015/08/26 15:08:12 by gsaynac          ###   ########.fr       */
+/*   Updated: 2015/08/26 18:01:39 by gsaynac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int		main(int ac, char **av)
 {
+	t_fdf		fdf;
+	
 	(void)ac;
 	(void)av;
+	ft_mlx_init(&fdf);
 	return (1);
 }
