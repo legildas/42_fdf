@@ -12,7 +12,7 @@
 
 #include <fdf.h>
 
-static int		hook_key(int keycode, t_fdf *fdf)
+static int		ft_hook_key(int keycode, t_fdf *fdf)
 {
 	(void)fdf;
 	if (keycode == KEY_ESCAPE)
@@ -20,7 +20,7 @@ static int		hook_key(int keycode, t_fdf *fdf)
 	return (0);
 }
 
-static int		hook_expose(t_fdf *fdf)
+static int		ft_hook_expose(t_fdf *fdf)
 {
 	(void)fdf;
 	return (0);
@@ -32,7 +32,7 @@ void			ft_mlx_init(t_fdf *fdf)
 		ft_error("failed to init mlx");
 	if (!(fdf->mlx.win = mlx_new_window(fdf->mlx.mlx, W, H, "fdf")))
 		ft_error("failed to create new window");
-	mlx_key_hook(fdf->mlx.win, hook_key, fdf);
-	mlx_expose_hook(fdf->mlx.win, hook_expose, fdf);
+	mlx_key_hook(fdf->mlx.win, ft_hook_key, fdf);
+	mlx_expose_hook(fdf->mlx.win, ft_hook_expose, fdf);
 	mlx_loop(fdf->mlx.mlx);
 }

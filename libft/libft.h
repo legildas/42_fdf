@@ -18,12 +18,21 @@
 # include <stdarg.h>
 # include <unistd.h>
 
+# define BUFF_SIZE 512
+
 typedef struct	s_list
 {
 	void			*content;
 	size_t			content_size;
 	struct s_list	*next;
 }				t_list;
+
+typedef struct	s_gnl
+{
+	char			*remain;
+	int				fd;
+	struct s_gnl	*next;
+}				t_gnl;
 
 int				ft_atoi(const char *str);
 void			ft_bzero(void *s, size_t n);
@@ -93,5 +102,6 @@ double			ft_fabs(double x);
 double			ft_ceil(double x);
 double			ft_floor(double x);
 double			ft_sqrt(double x);
+int				get_next_line(int const fd, char **line);
 
 #endif

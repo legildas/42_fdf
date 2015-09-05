@@ -12,12 +12,17 @@
 
 #include <fdf.h>
 
-int		main(int ac, char **av)
+int				main(int ac, char **av)
 {
 	t_fdf		fdf;
-	
+
 	(void)ac;
-	(void)av;
-	ft_mlx_init(&fdf);
+	if (ac != 2)
+		ft_error("missing map");
+	else
+	{
+		ft_parse(av[1], &fdf);
+		ft_mlx_init(&fdf);
+	}
 	return (1);
 }

@@ -87,6 +87,7 @@ SRC = $(SRC_D)ft_atoi.c \
 	$(SRC_D)ft_ceil.c \
 	$(SRC_D)ft_floor.c \
 	$(SRC_D)ft_sqrt.c \
+	$(SRC_D)get_next_line.c
 
 OBJ_D = .obj/
 OBJ = $(SRC:$(SRC_D)%.c=$(OBJ_D)%.o)

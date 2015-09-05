@@ -18,7 +18,8 @@ FLAGS	=	-Wall -Wextra -Werror
 SRC_D	=	./src/
 SRC		=	$(SRC_D)main.c \
 			$(SRC_D)mlx.c \
-			$(SRC_D)error.c
+			$(SRC_D)error.c \
+			$(SRC_D)parse.c
 
 OBJ_D	=	./.obj/
 OBJ		=	$(SRC:$(SRC_D)%.c=$(OBJ_D)%.o)

@@ -20,6 +20,7 @@
 
 # include <libft.h>
 # include <mlx.h>
+# include <fcntl.h>
 
 typedef struct				s_mlx
 {
@@ -27,12 +28,21 @@ typedef struct				s_mlx
 	void					*win;
 }							t_mlx;
 
+typedef struct				s_map
+{
+	size_t					nb_line;
+	size_t					nb_column;
+	int						**matrix;
+}							t_map;
+
 typedef struct				s_fdf
 {
 	t_mlx					mlx;
+	t_map					map;
 }							t_fdf;
 
 void						ft_mlx_init(t_fdf *fdf);
 void						ft_error(char *error);
+void						ft_parse(char *filename, t_fdf *fdf);
 
 #endif
