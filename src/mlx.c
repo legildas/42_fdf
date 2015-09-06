@@ -34,5 +34,4 @@ void			ft_mlx_init(t_fdf *fdf)
 		ft_error("failed to create new window");
 	mlx_key_hook(fdf->mlx.win, ft_hook_key, fdf);
 	mlx_expose_hook(fdf->mlx.win, ft_hook_expose, fdf);
-	mlx_loop(fdf->mlx.mlx);
 }

@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   process.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsaynac <gsaynac@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/08/26 15:07:37 by gsaynac           #+#    #+#             */
-/*   Updated: 2015/08/26 18:01:39 by gsaynac          ###   ########.fr       */
+/*   Created: 2015/09/06 14:37:58 by gsaynac           #+#    #+#             */
+/*   Updated: 2015/09/06 14:38:00 by gsaynac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
 
-int				main(int ac, char **av)
+void		ft_process(t_fdf *fdf)
 {
-	t_fdf		fdf;
+	size_t		x;
+	size_t		y;
 
-	(void)ac;
-	if (ac != 2)
-		ft_error("missing map");
-	else
+	y = 0;
+	while (y < fdf->map.nb_line - 1)
 	{
-		ft_parse(av[1], &fdf);
-		ft_mlx_init(&fdf);
-		ft_process(&fdf);
-		mlx_loop(fdf.mlx.mlx);
+		x = 0;
+		while (x < fdf->map.nb_column - 1)
+		{
+			ft_draw(x, y, fdf);
+			x++;
+		}
+		y++;
 	}
-	return (1);
 }

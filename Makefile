@@ -13,13 +13,15 @@
 NAME	=	fdf
 
 CC		=	gcc
-FLAGS	=	-Wall -Wextra -Werror
+FLAGS	=	-Wall -Wextra
 
 SRC_D	=	./src/
 SRC		=	$(SRC_D)main.c \
 			$(SRC_D)mlx.c \
 			$(SRC_D)error.c \
-			$(SRC_D)parse.c
+			$(SRC_D)parse.c \
+			$(SRC_D)process.c \
+			$(SRC_D)draw.c
 
 OBJ_D	=	./.obj/
 OBJ		=	$(SRC:$(SRC_D)%.c=$(OBJ_D)%.o)
