@@ -28,4 +28,5 @@ void		ft_process(t_fdf *fdf)
 		}
 		y++;
 	}
+	mlx_put_image_to_window(fdf->mlx.mlx, fdf->mlx.win, fdf->mlx.img.img, 0, 0);
 }

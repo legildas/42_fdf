@@ -17,20 +17,52 @@
 # define H					1080
 
 # define KEY_ESCAPE			53
-
-# define SCALE				20
-# define DEPTH				5
-# define MARGIN				500
+# define KEY_MOVE_UP			126
+# define KEY_MOVE_DOWN			125
+# define KEY_MOVE_RIGHT			124
+# define KEY_MOVE_LEFT			123
+# define KEY_ZOOM_IN			69
+# define KEY_ZOOM_OUT			78
+# define KEY_CENTER				49
+# define KEY_TOGGLE_CENTER		3
+# define KEY_TOGGLE_COLORS		8
+# define KEY_SCALE_UP_X			12
+# define KEY_SCALE_DOWN_X		0
+# define KEY_SCALE_UP_Y			13
+# define KEY_SCALE_DOWN_Y		1
+# define KEY_SCALE_UP_Z			14
+# define KEY_SCALE_DOWN_Z		2
+# define KEY_RESET				15
 
 # include <libft.h>
 # include <mlx.h>
 # include <fcntl.h>
 # include <stdio.h>
 
+typedef struct				s_xyz
+{
+	int						x1;
+	int						x2;
+	int						y1;
+	int						y2;
+	int						z1;
+	int						z2;
+}							t_xyz;
+
+typedef	struct				s_img
+{
+	void					*img;
+	void					*data;
+	int						bpp;
+	int						size_line;
+	int						endian;
+}							t_img;
+
 typedef struct				s_mlx
 {
 	void					*mlx;
 	void					*win;
+	t_img					img;
 }							t_mlx;
 
 typedef struct				s_map
@@ -40,15 +72,26 @@ typedef struct				s_map
 	int						**matrix;
 }							t_map;
 
+typedef struct 				s_set
+{
+	int						y_scale;
+	int						x_scale;
+	int						depth;
+	int						margin_left;
+	int						margin_top;
+}							t_set;
+
 typedef struct				s_fdf
 {
 	t_mlx					mlx;
 	t_map					map;
+	t_set					settings;
 }							t_fdf;
 
 void						ft_mlx_init(t_fdf *fdf);
 void						ft_error(char *error);
 void						ft_parse(char *filename, t_fdf *fdf);
+void						ft_set_settings(t_fdf *fdf);
 void						ft_process(t_fdf *fdf);
 void						ft_draw(int x, int y, t_fdf *fdf);
 
