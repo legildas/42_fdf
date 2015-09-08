@@ -1,0 +1,11 @@
+Refactorisation:
+	- draw.c: répétition de code
+	- 4 appels à draw "au cas où"...il doit y avoir une meilleur logique.
+
+Commandes:
+	- Empêcher de dépasser la taille de la fenêtre
+	- Chercher le segfault (fortement dépendant du point au dessus)
+
+Couleurs ?
+
+Autres perspectives ?

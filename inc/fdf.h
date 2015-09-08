@@ -16,23 +16,21 @@
 # define W					1920
 # define H					1080
 
-# define KEY_ESCAPE			53
+# define KEY_ESCAPE				53
 # define KEY_MOVE_UP			126
 # define KEY_MOVE_DOWN			125
 # define KEY_MOVE_RIGHT			124
 # define KEY_MOVE_LEFT			123
 # define KEY_ZOOM_IN			69
 # define KEY_ZOOM_OUT			78
-# define KEY_CENTER				49
-# define KEY_TOGGLE_CENTER		3
-# define KEY_TOGGLE_COLORS		8
-# define KEY_SCALE_UP_X			12
-# define KEY_SCALE_DOWN_X		0
-# define KEY_SCALE_UP_Y			13
-# define KEY_SCALE_DOWN_Y		1
-# define KEY_SCALE_UP_Z			14
-# define KEY_SCALE_DOWN_Z		2
-# define KEY_RESET				15
+# define KEY_SCALE_X_UP			89
+# define KEY_SCALE_X_DOWN		86
+# define KEY_SCALE_Y_UP			91
+# define KEY_SCALE_Y_DOWN		87
+# define KEY_DEPTH_UP			92
+# define KEY_DEPTH_DOWN			88
+# define KEY_RESET				82
+# define KEY_CENTER				65
 
 # include <libft.h>
 # include <mlx.h>

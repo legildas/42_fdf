@@ -37,7 +37,6 @@ static void		ft_clear_image(t_fdf *fdf)
 
 static int		ft_hook_key(int keycode, t_fdf *fdf)
 {
-	(void)fdf;
 	if (keycode == KEY_ESCAPE)
 		exit(0);
 	else if (keycode == KEY_ZOOM_IN)
@@ -58,6 +57,25 @@ static int		ft_hook_key(int keycode, t_fdf *fdf)
 		fdf->settings.margin_left -= 10;
 	else if (keycode == KEY_MOVE_RIGHT)
 		fdf->settings.margin_left += 10;
+	else if (keycode == KEY_DEPTH_UP)
+		fdf->settings.depth += 1;
+	else if (keycode == KEY_DEPTH_DOWN)
+		fdf->settings.depth -= 1;
+	else if (keycode == KEY_SCALE_X_UP)
+		fdf->settings.x_scale += 1;
+	else if (keycode == KEY_SCALE_X_DOWN)
+		fdf->settings.x_scale -= 1;
+	else if (keycode == KEY_SCALE_Y_UP)
+		fdf->settings.y_scale += 1;
+	else if (keycode == KEY_SCALE_Y_DOWN)
+		fdf->settings.y_scale -= 1;
+	else if (keycode == KEY_CENTER)
+	{
+		fdf->settings.margin_left = ((W / 2) - (fdf->map.nb_column * fdf->settings.x_scale / 2)) / 2;
+		fdf->settings.margin_top = (H / 2) - (fdf->map.nb_line * fdf->settings.y_scale / 2);
+	}
+	else if (keycode == KEY_RESET)
+		ft_set_settings(fdf);
 	ft_clear_image(fdf);
 	ft_process(fdf);
 	return (0);
@@ -65,7 +83,7 @@ static int		ft_hook_key(int keycode, t_fdf *fdf)
 
 static int		ft_hook_expose(t_fdf *fdf)
 {
-	(void)fdf;
+	mlx_put_image_to_window(fdf->mlx.mlx, fdf->mlx.win, fdf->mlx.img.img, 0, 0);
 	return (0);
 }
 
@@ -80,5 +98,6 @@ void			ft_mlx_init(t_fdf *fdf)
 	if (!(fdf->mlx.img.data = mlx_get_data_addr(fdf->mlx.img.img, &fdf->mlx.img.bpp, &fdf->mlx.img.size_line, &fdf->mlx.img.endian)))
 		ft_error("failed to get image datas");
 	mlx_key_hook(fdf->mlx.win, ft_hook_key, fdf);
+	mlx_do_key_autorepeatoff(fdf->mlx.mlx);
 	mlx_expose_hook(fdf->mlx.win, ft_hook_expose, fdf);
 }
