@@ -1,11 +1,14 @@
 Refactorisation:
-	- draw.c: répétition de code
-	- 4 appels à draw "au cas où"...il doit y avoir une meilleur logique.
+	- setting.c:
+		+ ft_center un peu #wtf et pas parfait
 
 Commandes:
-	- Empêcher de dépasser la taille de la fenêtre
-	- Chercher le segfault (fortement dépendant du point au dessus)
+	- Souris:
+		+ drag drop
 
 Couleurs ?
 
-Autres perspectives ?
+Parsing:
+	+ Ne prends pas la ligne en compte s'il n'y a pas de retour à la ligne..comportement normal ?
+
+Norme 42

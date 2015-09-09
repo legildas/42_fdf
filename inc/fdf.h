@@ -23,6 +23,8 @@
 # define KEY_MOVE_LEFT			123
 # define KEY_ZOOM_IN			69
 # define KEY_ZOOM_OUT			78
+# define MOUSE_ZOOM_IN			4
+# define MOUSE_ZOOM_OUT			5
 # define KEY_SCALE_X_UP			89
 # define KEY_SCALE_X_DOWN		86
 # define KEY_SCALE_Y_UP			91
@@ -36,6 +38,7 @@
 # include <mlx.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <math.h>
 
 typedef struct				s_xyz
 {
@@ -90,6 +93,7 @@ void						ft_mlx_init(t_fdf *fdf);
 void						ft_error(char *error);
 void						ft_parse(char *filename, t_fdf *fdf);
 void						ft_set_settings(t_fdf *fdf);
+void						ft_center(t_fdf *fdf);
 void						ft_process(t_fdf *fdf);
 void						ft_draw(int x, int y, t_fdf *fdf);
 

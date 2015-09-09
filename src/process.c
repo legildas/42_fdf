@@ -18,10 +18,10 @@ void		ft_process(t_fdf *fdf)
 	size_t		y;
 
 	y = 0;
-	while (y < fdf->map.nb_line - 1)
+	while (y < fdf->map.nb_line)
 	{
 		x = 0;
-		while (x < fdf->map.nb_column - 1)
+		while (x < fdf->map.nb_column)
 		{
 			ft_draw(x, y, fdf);
 			x++;
