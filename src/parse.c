@@ -12,40 +12,50 @@
 
 #include <fdf.h>
 
-static int		ft_get_fd(char *filename)
-{
-	int		fd;
-
-	if ((fd = open(filename, O_RDONLY)) == -1)
-		ft_error("invalid filename");
-	return (fd);
-}
-
-static void		ft_get_size(char *filename, t_map *map)
+static void		ft_process_buffer(char *buffer, t_map *map, int i, int to_data)
 {
 	char	**parsed_line;
-	char	*buffer;
-	int		fd;
-	size_t	len;
+	size_t	j;
 
-	fd = ft_get_fd(filename);
-	while (get_next_line(fd, &buffer))
+	parsed_line = ft_strsplit(buffer, ' ');
+	j = 0;
+	while (parsed_line[j])
+	{
+		if (to_data)
+			map->matrix[i][j] = ft_atoi(parsed_line[j]);
+		if (to_data && map->z_max < ft_fabs(map->matrix[i][j]))
+			map->z_max = ft_fabs(map->matrix[i][j]);
+		free(parsed_line[j]);
+		j++;		
+	}
+	if (!to_data)
 	{
 		map->nb_line++;
-		parsed_line = ft_strsplit(buffer, ' ');
-		len = -1;
-		while (parsed_line[++len])
-			free(parsed_line[len]);
-		if (map->nb_column != len)
+		if (map->nb_column != j)
 		{
 			if (!map->nb_column)
-				map->nb_column = len;
+				map->nb_column = j;
 			else
 				ft_error("unconsistent column length");
-		}
-		free(parsed_line);
-		free(buffer);
+		}		
 	}
+	free(parsed_line);
+	free(buffer);
+}
+
+static void		ft_read_map(char *filename, t_map *map, int to_data)
+{
+	char	*buffer;
+	int		fd;
+	int		i;
+
+	i = 0;
+	if ((fd = open(filename, O_RDONLY)) == -1)
+		ft_error("invalid filename");
+	while (get_next_line(fd, &buffer) > 0)
+		ft_process_buffer(buffer, map, i++, to_data);
+	if (ft_strlen(buffer))
+		ft_process_buffer(buffer, map, i++, to_data);
 	close(fd);
 }
 
@@ -59,38 +69,12 @@ static void		ft_malloc_map(t_map *map)
 		map->matrix[i++] = malloc(map->nb_column * sizeof(**map->matrix));
 }
 
-static void		ft_read_map(char *filename, t_map *map)
-{
-	char	**parsed_line;
-	char	*buffer;
-	int		fd;
-	int		i;
-	int		j;
-
-	fd = ft_get_fd(filename);
-	i = 0;
-	while (get_next_line(fd, &buffer))
-	{
-		parsed_line = ft_strsplit(buffer, ' ');
-		j = 0;
-		while (parsed_line[j])
-		{
-			map->matrix[i][j] = ft_atoi(parsed_line[j]);
-			free(parsed_line[j]);
-			j++;
-		}
-		free(parsed_line);
-		free(buffer);
-		i++;
-	}
-	close(fd);
-}
-
 void			ft_parse(char *filename, t_fdf *fdf)
 {
 	fdf->map.nb_line = 0;
 	fdf->map.nb_column = 0;
-	ft_get_size(filename, &fdf->map);
+	fdf->map.z_max = 0;
+	ft_read_map(filename, &fdf->map, 0);
 	ft_malloc_map(&fdf->map);
-	ft_read_map(filename, &fdf->map);
+	ft_read_map(filename, &fdf->map, 1);
 }

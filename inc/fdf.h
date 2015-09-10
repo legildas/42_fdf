@@ -70,6 +70,7 @@ typedef struct				s_map
 {
 	size_t					nb_line;
 	size_t					nb_column;
+	int						z_max;
 	int						**matrix;
 }							t_map;
 
@@ -80,6 +81,7 @@ typedef struct 				s_set
 	int						depth;
 	int						margin_left;
 	int						margin_top;
+	int						main_color;
 }							t_set;
 
 typedef struct				s_fdf

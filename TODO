@@ -1,14 +1,8 @@
-Refactorisation:
-	- setting.c:
-		+ ft_center un peu #wtf et pas parfait
-
 Commandes:
 	- Souris:
 		+ drag drop
 
-Couleurs ?
-
-Parsing:
-	+ Ne prends pas la ligne en compte s'il n'y a pas de retour à la ligne..comportement normal ?
+Couleurs:
+	- Pouvoir changer la palette de couleurs
 
 Norme 42

@@ -74,9 +74,9 @@ static int		ft_key_hook(int keycode, t_fdf *fdf)
 	else if (keycode == KEY_MOVE_RIGHT)
 		fdf->settings.margin_left -= 10;
 	else if (keycode == KEY_DEPTH_UP)
-		fdf->settings.depth++;
+		fdf->settings.depth += fdf->settings.depth == -1 ? 2 : 1;
 	else if (keycode == KEY_DEPTH_DOWN)
-		fdf->settings.depth--;
+		fdf->settings.depth -= fdf->settings.depth == 1 ? 2 : 1;
 	else if (keycode == KEY_SCALE_X_UP)
 		fdf->settings.x_scale++;
 	else if (keycode == KEY_SCALE_X_DOWN)
