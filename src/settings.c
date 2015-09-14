@@ -6,17 +6,17 @@
 /*   By: gsaynac <gsaynac@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 00:59:26 by gsaynac           #+#    #+#             */
-/*   Updated: 2015/09/08 00:59:28 by gsaynac          ###   ########.fr       */
+/*   Updated: 2015/09/14 11:47:00 by gsaynac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
 
-void		ft_center(t_fdf *fdf)
+void			ft_center(t_fdf *fdf)
 {
 	int		y[2];
 	int		x[2];
-	int 	height;
+	int		height;
 	int		width;
 
 	y[0] = fdf->map.nb_line * fdf->settings.y_scale * -1;
@@ -31,9 +31,11 @@ void		ft_center(t_fdf *fdf)
 
 void			ft_set_settings(t_fdf *fdf)
 {
-	fdf->settings.y_scale = H / fdf->map.nb_line / 4;
-	fdf->settings.x_scale = W / fdf->map.nb_column / 2;
-	fdf->settings.depth = 2;
+	if ((fdf->settings.y_scale = H / fdf->map.nb_line / 4) == 0)
+		fdf->settings.y_scale = 1;
+	if ((fdf->settings.x_scale = W / fdf->map.nb_column / 2) == 0)
+		fdf->settings.x_scale = 1;
+	fdf->settings.depth = 1;
 	fdf->settings.main_color = 0;
 	ft_center(fdf);
 }

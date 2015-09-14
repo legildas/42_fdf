@@ -6,7 +6,7 @@
 /*   By: gsaynac <gsaynac@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/06 14:37:58 by gsaynac           #+#    #+#             */
-/*   Updated: 2015/09/06 14:38:00 by gsaynac          ###   ########.fr       */
+/*   Updated: 2015/09/14 11:03:21 by gsaynac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void		ft_process(t_fdf *fdf)
 {
-	size_t		x;
-	size_t		y;
+	int		x;
+	int		y;
 
 	y = 0;
 	while (y < fdf->map.nb_line)

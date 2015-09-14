@@ -6,7 +6,7 @@
 #    By: gsaynac <gsaynac@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/08/26 15:03:57 by gsaynac           #+#    #+#              #
-#    Updated: 2015/08/26 18:02:14 by gsaynac          ###   ########.fr        #
+#    Updated: 2015/09/14 10:42:43 by gsaynac          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ FLAGS	=	-Wall -Wextra
 SRC_D	=	./src/
 SRC		=	$(SRC_D)main.c \
 			$(SRC_D)mlx.c \
+			$(SRC_D)hook.c \
 			$(SRC_D)error.c \
 			$(SRC_D)parse.c \
 			$(SRC_D)process.c \

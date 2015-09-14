@@ -6,7 +6,7 @@
 /*   By: gsaynac <gsaynac@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/06 14:50:18 by gsaynac           #+#    #+#             */
-/*   Updated: 2015/09/06 14:50:20 by gsaynac          ###   ########.fr       */
+/*   Updated: 2015/09/14 12:51:40 by gsaynac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,22 @@ static int		ft_get_color(int z1, int z2, t_fdf *fdf)
 		z = ft_fabs(z1);
 	else
 		z = ft_fabs((z1 + z2) / 2);
-	rgb[fdf->settings.main_color] = 255 * z / (fdf->map.z_max * ft_fabs(fdf->settings.depth));
+	rgb[fdf->settings.main_color] = 255 * z /
+		(fdf->map.z_max * ft_fabs(fdf->settings.depth));
 	return (rgb[2] + rgb[1] * 256 + rgb[0] * 256 * 256);
 }
 
 static void		ft_draw_pixel(int x, int y, int color, t_fdf *fdf)
 {
+	int		offset;
+
 	x += fdf->settings.margin_left;
 	y += fdf->settings.margin_top;
 	if (x > 0 && x < W && y > 0 && y < H)
-		*((int*)(fdf->mlx.img.data + y * fdf->mlx.img.size_line + x * (fdf->mlx.img.bpp / 8))) = color;
+	{
+		offset = y * fdf->mlx.img.size_line + x * (fdf->mlx.img.bpp / 8);
+		*((int*)(fdf->mlx.img.data + offset)) = color;
+	}
 }
 
 static void		ft_draw_line(t_xyz xyz, t_fdf *fdf)
@@ -44,9 +50,11 @@ static void		ft_draw_line(t_xyz xyz, t_fdf *fdf)
 	x = xyz.x1;
 	color = ft_get_color(xyz.z1, xyz.z2, fdf);
 	while (x++ < xyz.x2)
-		ft_draw_pixel(x, xyz.y1 + ((xyz.y2 - xyz.y1) * (x - xyz.x1)) / (xyz.x2 - xyz.x1), color, fdf);
+		ft_draw_pixel(x, xyz.y1 + ((xyz.y2 - xyz.y1) * (x - xyz.x1)) /
+			(xyz.x2 - xyz.x1), color, fdf);
 	while (x-- > xyz.x2)
-		ft_draw_pixel(x, xyz.y1 + ((xyz.y2 - xyz.y1) * (x - xyz.x1)) / (xyz.x2 - xyz.x1), color, fdf);
+		ft_draw_pixel(x, xyz.y1 + ((xyz.y2 - xyz.y1) * (x - xyz.x1)) /
+			(xyz.x2 - xyz.x1), color, fdf);
 }
 
 static void		ft_draw_line_2(t_xyz xyz, t_fdf *fdf)
@@ -57,9 +65,11 @@ static void		ft_draw_line_2(t_xyz xyz, t_fdf *fdf)
 	y = xyz.y1;
 	color = ft_get_color(xyz.z1, xyz.z2, fdf);
 	while (y++ < xyz.y2)
-		ft_draw_pixel(xyz.x1 + ((xyz.x2 - xyz.x1) * (y - xyz.y1)) / (xyz.y2 - xyz.y1), y, color, fdf);
+		ft_draw_pixel(xyz.x1 + ((xyz.x2 - xyz.x1) * (y - xyz.y1)) /
+			(xyz.y2 - xyz.y1), y, color, fdf);
 	while (y-- > xyz.y2)
-		ft_draw_pixel(xyz.x1 + ((xyz.x2 - xyz.x1) * (y - xyz.y1)) / (xyz.y2 - xyz.y1), y, color, fdf);
+		ft_draw_pixel(xyz.x1 + ((xyz.x2 - xyz.x1) * (y - xyz.y1)) /
+			(xyz.y2 - xyz.y1), y, color, fdf);
 }
 
 void			ft_draw(int x, int y, t_fdf *fdf)
@@ -82,7 +92,7 @@ void			ft_draw(int x, int y, t_fdf *fdf)
 	if (y + 1 < fdf->map.nb_line)
 	{
 		xyz.z2 = fdf->map.matrix[y + 1][x] * fdf->settings.depth;
-		xyz.y2 = (y - x + 1) * fdf->settings.y_scale - xyz.z2;;
+		xyz.y2 = (y - x + 1) * fdf->settings.y_scale - xyz.z2;
 		if (ft_fabs(xyz.x2 - xyz.x1) > ft_fabs(xyz.y2 - xyz.y1))
 			ft_draw_line(xyz, fdf);
 		else
